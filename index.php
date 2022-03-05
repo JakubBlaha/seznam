@@ -24,7 +24,12 @@
 
     <?php
         if ($query) {
-            $res = $conn->query("SELECT * FROM users WHERE name LIKE '%" . $query . "%' OR surname LIKE '%" . $query . "%' OR phone_number LIKE '%" . $query . "%'");
+            $param = "%" . $query . "%";
+            $st = $conn->prepare("SELECT * FROM users WHERE name LIKE ? OR surname LIKE ? OR phone_number LIKE ?");
+            $st->bind_param("sss", $param, $param, $param);
+            $st->execute();
+
+            $res = $st->get_result();
         } else {
             $res = $conn->query("SELECT * FROM users");
         }
