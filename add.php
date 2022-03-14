@@ -5,7 +5,7 @@
 <main class="mx-auto max-w-prose my-8">
     <h1 class="text-xl mb-2">Add new record</h1>
 
-    <form action="add-submit.php" class="flex flex-col gap-2">
+    <form action="./add-submit.php" class="flex flex-col gap-2">
         <label>
             <input type="text" name="name" placeholder="Martin" value="<?php echo $_REQUEST['name'] ?? "" ?>" class="p-2 rounded border mr-4">
             Name

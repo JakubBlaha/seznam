@@ -12,11 +12,11 @@
 
 <main class="mx-auto max-w-prose my-8">
     <div class="flex space-x-1">
-        <form action="/add.php" class="inline-block">
+        <form action="./add.php" class="inline-block">
             <input type="submit" value="Add new +" class="p-2 rounded cursor-pointer border">
         </form>
 
-        <form action="index.php" class="flex flex-grow space-x-1">
+        <form action="./index.php" class="flex flex-grow space-x-1">
             <input type="text" name="query" class="p-2 rounded cursor-pointer border flex-grow" value="<?php echo $query ?>" placeholder="Type in name, surname or phone number">
             <input type="submit" value="Search" class="p-2 rounded cursor-pointer border">
         </form>

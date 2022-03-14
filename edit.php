@@ -32,8 +32,8 @@
 <main class="mx-auto max-w-prose my-8">
     <h1 class="text-xl mb-2">Edit record #<?php echo $_REQUEST['id']?></h1>
 
-    <form id="edit-form" action="edit-submit.php"></form>
-    <form id="delete-form" action="delete-submit.php"></form>
+    <form id="edit-form" action="./edit-submit.php"></form>
+    <form id="delete-form" action="./delete-submit.php"></form>
         
     <input type="text" name="id" form="edit-form" class="hidden" value="<?php echo $_REQUEST['id'] ?>">
     <input type="text" name="id" form="delete-form" class="hidden" value="<?php echo $_REQUEST['id'] ?>">
