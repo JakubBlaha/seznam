@@ -25,19 +25,22 @@
     <?php
         if ($query) {
             $param = "%" . $query . "%";
-            $st = $conn->prepare("SELECT * FROM users WHERE name LIKE ? OR surname LIKE ? OR phone_number LIKE ?");
+            $st = $conn->prepare("SELECT u.id, u.name, u.surname, n.number FROM users u RIGHT JOIN numbers n ON u.id = n.user_id WHERE name LIKE ? OR surname LIKE ? OR n.number LIKE ?");
             $st->bind_param("sss", $param, $param, $param);
             $st->execute();
 
             $res = $st->get_result();
         } else {
-            $res = $conn->query("SELECT * FROM users");
+            $st = $conn->prepare("SELECT users.id, users.name, users.surname, numbers.number FROM users RIGHT JOIN numbers ON users.id = numbers.user_id");
+            $st->execute();
+
+            $res = $st->get_result();
         }
 
         if ($res->num_rows > 0) {
             // output data of each row
             while($row = $res->fetch_assoc()) {
-            echo "<a class='odd:bg-gray-100 border p-2 flex' href='/edit.php?id=".$row['id']."'><div class='flex-grow'>" . $row["name"]. " " . $row["surname"]. "</div><div>".$row["phone_number"]."</div></a>";
+            echo "<a class='odd:bg-gray-100 border p-2 flex' href='/edit.php?id=".$row['id']."'><div class='flex-grow'>" . $row["name"]. " " . $row["surname"]. "</div><div>".$row['number']."</div></a>";
             }
         } else {
             echo get_info_banner("No results found.");

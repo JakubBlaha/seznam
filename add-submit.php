@@ -9,8 +9,13 @@
         echo get_error_banner($error);
         require("add.php");
     } else {
-        $st = $conn->prepare("INSERT INTO users (name, surname, phone_number) VALUES (?, ?, ?)");
-        $st->bind_param("sss", $_REQUEST['name'], $_REQUEST['surname'], $_REQUEST['phone-number']);
+        $st = $conn->prepare("INSERT INTO users (name, surname) VALUES (?, ?)");
+        $st->bind_param("ss", $_REQUEST['name'], $_REQUEST['surname']);
+        $st->execute();
+        $insert_id = $st->insert_id;
+
+        $st = $conn->prepare("INSERT INTO numbers (number, user_id) VALUES (?, ?)");
+        $st->bind_param("si", $_REQUEST['phone-number'], $insert_id);
         $st->execute();
 
         echo get_info_banner("Record updated successfully.");
