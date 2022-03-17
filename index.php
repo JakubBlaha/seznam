@@ -40,7 +40,7 @@
         if ($res->num_rows > 0) {
             // output data of each row
             while($row = $res->fetch_assoc()) {
-            echo "<a class='odd:bg-gray-100 border p-2 flex' href='/edit.php?id=".$row['id']."'><div class='flex-grow'>" . $row["name"]. " " . $row["surname"]. "</div><div>".$row['number']."</div></a>";
+            echo "<a class='odd:bg-gray-100 border p-2 flex' href='./edit.php?id=".$row['id']."'><div class='flex-grow'>" . $row["name"]. " " . $row["surname"]. "</div><div>".$row['number']."</div></a>";
             }
         } else {
             echo get_info_banner("No results found.");
